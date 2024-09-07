@@ -1,0 +1,47 @@
+$date
+	Sun Apr 14 12:37:23 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module Guia_0903 $end
+$var wire 1 ! clock $end
+$upscope $end
+$scope module Guia_0903 $end
+$var wire 1 " p $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+1"
+0!
+$end
+#12
+1!
+#24
+0!
+#36
+1!
+#48
+0!
+0"
+#60
+1!
+#72
+0!
+#84
+1!
+#96
+0!
+1"
+#108
+1!
+#120
+0!
+#129

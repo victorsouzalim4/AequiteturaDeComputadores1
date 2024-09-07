@@ -1,0 +1,68 @@
+Main:  load size        
+       subtract one     
+       store n          
+
+outer_loop: load zero   
+            store i
+
+inner_loop: load i      
+            subtract n  
+            jmpz compare
+
+            load n      
+            subtract one
+            store n     
+            jmpz outer_loop
+
+            stop        
+
+compare:    load i      
+            add base    
+            store mar   
+            load mdr    
+            store temp  
+
+            load i      
+            add one     
+            add base    
+            store mar   
+            load mdr    
+            subtract temp
+            jmpz swap   
+
+increment:  load i      
+            add one     
+            store i     
+            jump inner_loop
+
+swap:      load i      
+           add base    
+           store mar   
+           load temp   
+           store mdr   
+
+           load i      
+           add one     
+           add base    
+           store mar   
+           load mdr    
+           store temp  
+           load temp   
+           store arr   
+
+           jump increment
+
+size: .data 2 5         
+arr:  .data 2 5         
+      .data 2 3
+      .data 2 8
+      .data 2 1
+      .data 2 7
+base: .data 2 0         
+zero: .data 2 0         
+one:  .data 2 1         
+i:    .data 2 0         
+n:    .data 2 0         
+temp: .data 2 0         
+mar:  .data 2 0         
+mdr:  .data 2 0         

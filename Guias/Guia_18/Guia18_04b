@@ -1,0 +1,21 @@
+Main:  load zero      
+       NAND zero      
+       write          
+
+       load zero      
+       NAND one       
+       write          
+
+       load one       
+       NAND zero      
+       write          
+
+       load one       
+       NAND one       
+       write          
+
+       stop           
+
+zero:  .data 2 0      
+one:   .data 2 1      
+

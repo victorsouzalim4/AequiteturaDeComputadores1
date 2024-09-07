@@ -1,0 +1,57 @@
+Main:   load key         
+        store search_key 
+
+        load size        
+        store n          
+
+        load zero        
+        store i
+
+        load zero        
+        store found
+
+search_loop: load i      
+             subtract n  
+             jmpz not_found 
+
+             load i      
+             add base    
+             store mar   
+             load mdr    
+
+             load search_key 
+             subtract mdr    
+             jmpz found_value 
+
+             load i      
+             add one     
+             store i     
+             jump search_loop 
+
+found_value: load one    
+             store found 
+             jump end_search 
+
+not_found:   load zero   
+             store found 
+
+end_search:  load found  
+             write       
+             stop        
+
+size: .data 2 5          
+arr:  .data 2 5          
+      .data 2 3
+      .data 2 8
+      .data 2 1
+      .data 2 7
+key:   .data 2 3         
+base:  .data 2 0         
+zero:  .data 2 0         
+one:   .data 2 1         
+i:     .data 2 0         
+n:     .data 2 0         
+search_key: .data 2 0    
+found: .data 2 0         
+mar:   .data 2 0         
+mdr:   .data 2 0         

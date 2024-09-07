@@ -1,0 +1,19 @@
+Guia_1507
+835287 - Victor Souza Lima
+
+LXI H, dado01  ; HL <- endereço de dado01
+MOV A, M       ; A <- MEM[HL] (dado01)
+ANI 01h        ; A <- A & 01h (A % 2)
+MOV B, A       ; B <- dado01 % 2
+INX H          ; HL <- HL + 1 (endereço de dado02)
+MOV A, M       ; A <- MEM[HL] (dado02)
+RRC            ; A <- A / 2 (deslocamento à direita)
+RRC            ; A <- A / 4 (deslocamento à direita)
+ADD B          ; A <- A + B
+STA dado03     ; MEM[dado03] <- A (resultado)
+HLT            ; parar
+
+; Área de dados
+dado01: DB 03h ; exemplo de valor para dado01
+dado02: DB 08h ; exemplo de valor para dado02
+dado03: DB 00h ; resultado (inicializado com zero)

@@ -1,0 +1,156 @@
+
+		m | at | bt | c | at+1 | bt+1 | at | at+1 | Da | JaKa | Ta | bt | bt+1 | Db | JbKb | Tb
+		0 |  0 |  0 | 0 |   0  |   0  | 0  |   0  |  0 |  00  |  0 | 0  |   0  |  0 |  00  | 0
+		1 |  0 |  0 | 1 |   0  |   1  | 0  |   0  |  0 |  00  |  0 | 0  |   1  |  1 |  10  | 1
+		2 |  0 |  1 | 0 |   0  |   1  | 0  |   0  |  0 |  00  |  0 | 1  |   1  |  1 |  00  | 0
+		3 |  0 |  1 | 1 |   1  |   1  | 0  |   1  |  1 |  10  |  1 | 1  |   1  |  1 |  00  | 0
+		4 |  1 |  0 | 0 |   1  |   0  | 1  |   1  |  1 |  00  |  0 | 0  |   0  |  0 |  00  | 0
+		5 |  1 |  0 | 1 |   0  |   0  | 1  |   0  |  0 |  01  |  1 | 0  |   0  |  0 |  00  | 0
+		6 |  1 |  1 | 0 |   1  |   1  | 1  |   1  |  1 |  00  |  0 | 1  |   1  |  1 |  00  | 0
+		7 |  1 |  1 | 1 |   1  |   0  | 1  |   1  |  1 |  00  |  0 | 1  |   0  |  0 |  01  | 1
+
+
+
+1) a.) SoP(Da) = (a'bc)+(ab'c')+(abc')+(abc)
+       SoP(Db) = (a'b'c)+(a'bc')+(a'bc)+(abc')
+
+b.) SoP(Ja) = a'bc		SoP(Ka) = ab'c
+    SoP(Jb) = a'b'c		SoP(Kb) = abc
+
+
+c.) SoP(Ta) = (a'bc)+(ab'c)
+    SoP(Tb) = (a'b'c)+(abc)
+
+
+//apaga dps
+
+(A+B+C)(A+B+C')(A+B'+C)(A+B'+C')(A'+B+C)(A'+B+C')(A'+B'+C)(A'+B'+C')
+
+
+
+
+2) a.) PoS(Da) = (A+B+C)(A+B+C')(A+B'+C)(A'+B+C')
+       PoS(Db) = (A+B+C)(A'+B+C)(A'+B+C')(A'+B'+C')
+
+   b.) PoS(Ja) = (A+B+C)(A+B+C')(A+B'+C)(A'+B+C)(A'+B+C')(A'+B'+C)(A'+B'+C')                    PoS(Ka) = (A+B+C)(A+B+C')(A+B'+C)(A+B'+C')(A'+B+C)(A'+B'+C)(A'+B'+C')
+       PoS(Jb) = (A+B+C)(A+B'+C)(A+B'+C')(A'+B+C)(A'+B+C')(A'+B'+C)(A'+B'+C')			Pos(Kb) = (A+B+C)(A+B+C')(A+B'+C)(A+B'+C')(A'+B+C)(A'+B+C')(A'+B'+C)
+
+   c.) PoS(Ta) = (A+B+C)(A+B+C')(A+B'+C)(A'+B+C)(A'+B'+C)(A'+B'+C')
+       PoS(Tb) = (A+B+C)(A+B'+C)(A+B'+C')(A'+B+C)(A'+B+C')(A'+B'+C)
+
+
+3)
+
+	a) Da
+
+		ab\c  0  1
+		00    0  0
+		01    0  1
+		11    1  1
+		10    1  0
+
+		G1(3,7) = bc
+		G2(4,6) = ac'
+	
+	RESP: SoP(3,4,6,7) = (bc)+(ac')
+
+
+
+	b) Sa = Ja (in this case)
+
+		ab\c  0  1
+		00    0  0
+		01    0  1
+		11    0  0
+		10    0  0
+
+
+	RESP: SoP(3) = a'bc
+
+
+
+
+	c) Ra = Ka (in this case)
+
+		ab\c  0  1
+		00    0  0
+		01    0  0
+		11    0  0
+		10    0  1
+
+
+	RESP: SoP(5) = ab'c
+
+
+
+
+	d) Ta
+
+		ab\c  0  1
+		00    0  0
+		01    0  1
+		11    0  0
+		10    0  1
+
+
+	RESP: SoP(3) = (a'bc)+(ab'c)
+
+
+
+
+	e) Sb = Jb (in this case)
+
+		ab\c  0  1
+		00    0  1
+		01    0  0
+		11    0  0
+		10    0  0
+
+
+	RESP: SoP(1) = (a'b'c)
+
+
+
+
+	f) Rb = Kb (in this case)
+
+		ab\c  0  1
+		00    0  0
+		01    0  0
+		11    0  1
+		10    0  0
+
+
+
+	RESP: SoP(7) = abc
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

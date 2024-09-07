@@ -1,0 +1,43 @@
+// Guia_1604.txt
+// 835287 - Victor Souza Lima
+// Programa para encontrar o maior valor de um arranjo
+	   JMP MAIN	// Desvio para a área principal do programa
+// Função FIND_MAX - Encontra o maior valor no arranjo
+
+FIND_MAX:	   MOV B,M	// Carrega o tamanho do arranjo em B
+	   DCR B
+	   INX H	// Move HL para o primeiro elemento do arranjo
+	   MOV A,M	// Coloca o primeiro elemento do arranjo em A (maior valor inicial)
+
+NEXT_ELEMENT:	   INX H	// Move HL para o próximo elemento
+	   MOV C,M	// Move o valor atual do arranjo para C
+	   CMP C	// Compara A com C
+	   JC ATUALIZA	// Se A < Co
+	   DCR B	// Decrementa B (contador do tamanho do arranjo)
+	   JNZ NEXT_ELEMENT
+	   RET
+// Armazena o maior encontrado até agora de volta em M para segurança
+
+ATUALIZA:	   MOV A,C	// Atualiza A com o novo maior valor encontrado
+	   DCR B
+	   JNZ NEXT_ELEMENT	// Se ainda há elementos, continua o loop
+	   RET	// Retorna o maior valor encontrado em A
+// Área principal do programa
+
+MAIN:	   LXI H,004F	// Define HL para apontar para o endereço onde o tamanho do arranjo será armazenado
+	   MVI M,05	// Armazena o tamanho do arranjo (5 elementos)
+	   INX H	// Incrementa HL para apontar para o início do arranjo
+	   MVI M,01	// Armazena 01h na posição atual do arranjo (0050h)
+	   INX H
+	   MVI M,23	// Armazena 23h no arranjo
+	   INX H
+	   MVI M,4A	// Armazena 4Ah no arranjo
+	   INX H
+	   MVI M,10	// Armazena 10h no arranjo
+	   INX H
+	   MVI M,34	// Armazena 34h no arranjo
+	   LXI H,004F	// Redefine HL para o início do arranjo
+	   CALL FIND_MAX	// Chama FIND_MAX para encontrar o maior valor
+	   LXI H,0060	// Move HL para onde o maior valor será armazenado
+	   MOV M,A	// Armazena o maior valor encontrado em 0060h
+	   HLT	// Termina o programa

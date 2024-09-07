@@ -1,0 +1,45 @@
+// Guia_1601.txt
+// 835287 - Victor Souza Lima
+// Programa para calcular o produto de dois dados de 8 bits usando somas sucessivas
+
+// O primeiro número é armazenado na localização de memória 0050h
+// O segundo número é armazenado na localização de memória 0051h
+// O resultado é armazenado na localização de memória 0052h
+
+// Função IMUL: A = imul(B, C)
+// @return A
+// @param B
+// @param C
+
+        JMP MAIN        // Desvio para a área principal do programa
+
+// Função IMUL - Multiplicação usando somas sucessivas
+IMUL:   MVI A, 00H      // A = 0 (valor de retorno)
+        MOV D, B        // D = B (contador de somas)
+        MOV E, C        // E = C (valor a ser somado)
+
+IMUL_LOOP:
+        ADD E           // A = A + E (soma sucessiva)
+        DCR D           // Decrementa D (contador de somas)
+        JNZ IMUL_LOOP   // Se D != 0, continue a soma sucessiva
+        RET             // Retorna o resultado em A
+
+// Área principal do programa
+MAIN:   LXI H, 0050H    // HL = 0050h (endereço do primeiro dado)
+        MVI M, 02H      // Armazena o valor 02H em 0050h (dado1)
+        INX H           // Incrementa HL para apontar para 0051h
+        MVI M, 03H      // Armazena o valor 03H em 0051h
+        MOV B, M        // B = MEM[HL] (dado2)
+        DCX H           // Decrementa HL para apontar para 0050h novamente
+        MOV C, M        // C = MEM[HL] (dado1)
+
+        CALL IMUL       // Chama a função IMUL com B e C
+        STA 0052H       // Armazena o resultado em 0052h
+        HLT             // Termina o programa
+
+END:
+
+// Área de dados
+// dado1:  02h  ; primeiro  dado em hexadecimal
+// dado2:  03h  ; segundo dado em hexadecimal
+// dado3:  00h  ; resultado em hexadecimal

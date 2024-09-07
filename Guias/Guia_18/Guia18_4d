@@ -1,0 +1,39 @@
+Main:  load zero       
+       store f0        
+
+       load one        
+       store f1        
+
+       write           
+       write           
+
+       load f1         
+       add f0          
+       store f2        
+       write           
+
+       load f2         
+       add f1          
+       store f3        
+       write           
+
+       load f3         
+       add f2          
+       store f4        
+       write           
+
+       load f4         
+       add f3          
+       store f5        
+       write           
+
+       stop            
+
+zero:  .data 2 0       
+one:   .data 2 1       
+f0:    .data 2 0       
+f1:    .data 2 0       
+f2:    .data 2 0       
+f3:    .data 2 0       
+f4:    .data 2 0       
+f5:    .data 2 0       

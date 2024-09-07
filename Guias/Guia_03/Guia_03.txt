@@ -1,0 +1,283 @@
+Victor Souza Lima - Codigo de Pessoa: 1478515;
+
+
+1) a) C1,6 (1100(2)) = X(2)
+
+	  1100(2) -> ajuste de tamanho
+	001100(2) -> aplicas-se o complemento de 1
+	110011(2)
+
+	RESP: C1,6 (1100(2)) = 110011(2)
+
+   b) C1,8 (1110(2)) = 11110001(2)
+
+   c) C2,6 (100101(2)) = X(2)
+
+	100101 -> aplica-se o complemento de 1
+	011010 -> acrescenta-se +1
+
+	         011010
+	        +     1
+		________
+		 011011
+
+	 RESP: C2,6 (100101(2)) = 011011(2)
+
+
+    d) C2,7 (100101(2)) = X(2)
+
+	
+	100101 -> ajusta-se o tamanho 
+       0100101 -> aplica-se o complemento de 1
+       1011010 -> acrescenta-se +1
+
+	        1011010
+	       +      1
+		________
+		1011011
+
+	  RESP: C2,7 (100101(2)) = 1011011(2)
+
+      e)C2,8 (110101(2)) = 11001011(2)
+
+
+2) a) C1,6 (132(4)) = X(2)
+
+	Primeiro passo: converter o numero para base 2, o método utilizado será o de Desagrupamentos
+
+		1  3  2 (4)
+	       /   |   \
+	     |01| |11| |10| (2)
+	
+	Segundo passo: aplica-se o complemento de 1
+
+		011110 -> 100001
+
+	RESP: C1,6 (132(4)) = 100001(2)
+
+    
+    b) C1,8 (4B(16)) = X(2)
+
+	
+	Primeiro passo: converter o numero para base 2, o método utilizado será o de Desagrupamentos
+
+	        4    B  (16)
+	       /      \   
+	     |0100|  |1011|  (2)
+
+	Segundo passo: aplica-se o complemento de 1
+
+		01001011 -> 10110100
+	
+	
+	 RESP: C1,8 (4B(16)) = 10110100(2) 
+
+     
+     c) C2,6 (213(4)) = X(2)
+
+
+	Primeiro passo: converter o numero para base 2, o método utilizado será o de Desagrupamentos
+
+	        2   1   3  (4)
+	       /    |    \
+	     |10|  |01|  |11|   (2)
+
+	Segundo passo: aplica-se o complemento de 1
+
+		100111 -> 011000
+
+	Terceiro passo: acrescenta-se +1
+
+	
+		 011000
+		+     1
+		_______
+		 011001
+
+
+	RESP: C2,6 (213(4)) = 011001(2)
+
+
+
+      d) C2,10 (154(8)) = 1110010100(2)
+      e) C2,8 (B8(16))  =   01001000(2)
+
+
+
+3) a) 10111(2) = X(10)
+
+	Primeiro passo: substrai-se 1 
+
+		 10111
+		-    1
+		______
+		 10110
+
+	Segundo passo: Inverta os bits
+
+		10110 -> 01001
+	
+	Terceiro passo: Converta para a base desejada
+
+		01001(2) = 5(10)
+
+
+	RESP: 10111(2) = 5(10)
+
+
+    b) 110001(2) = 15(10)
+    c) 100101(2) = 011011(2)
+    d) 1011101(2) = 0100011(2)
+    e) 1010011(2) = 2D(16)
+
+
+4) a)11101(2) - 1011(2) = X(2)
+
+
+	Primeiro passo: ajuste o tamanho
+
+		1011 -> 01011
+	
+	Segundo passo: efentue o complemento de 2
+
+		1) 01011 -> 10100
+		2) 10100 + 1 = 10101
+	
+	Terceiro passo: some os numeros
+
+		 11101
+		+10101
+		_______
+	      1| 10010
+
+
+	RESP: 11101(2) - 1011(2) = 10010(2)
+
+
+   b) 101,0101(2) - 10,11(2) = X(2)
+
+	1) 10,11 -> 010,1100
+	2) 010,1100 -> 101,0011
+	3) 101,0011
+	  +       1
+	____________
+           101,0100
+
+	4) 101,0100
+	 + 101,0101
+	____________
+       |1| 010,1001
+
+
+	RESP: 101,0101(2) - 10,11(2) = 010,1001(2)
+
+   c) 321(4) - 213(4) = 102(4)
+   d) 461(8) - 247(8) = 212(8)
+
+
+   e) 7C4(16) - B1D(16) = CA7(16)      --> ?? nao entendi muito bem (o fato de B1D > 7C4 nao permite realizar a subtracao da maneira convencional, então tive uma ideia, mas nao sei se está correta. No caso, a solucao entao seria multiplicar todos por -1? 
+					   Assim teríamos -7C4 +B1D = -X, desse modo, é possivel subtrair (ou somar com complemento de 2), e depois com o resultado em maos, realizo o inverso do complemento de 2 para invés de -X obter X? 
+
+
+
+
+
+						*Demosntração abaixo: 7C4(16) - B1D(16) = X(16)   <--->   B1D - 7C4 = -X
+		
+							B1D (16) = 1011 0001 1101 (2) -> Por desagrupamento
+							7C4 (16) = 0111 1100 0100 (2) -> Por desagrupamento
+
+
+							*Aplica-se complemento de 2 em 0111 1100 0100 (7C4) 
+								= 1000 0011 1011 
+								+              1
+								________________
+								  1000 0011 1100
+
+							
+							*Some com 1011 0001 1101 (B1D)
+								1011 0001 1101 
+							      + 1000 0011 1100             
+							      ________________
+							    |1| 0011 0101 1001   =  -X
+
+
+
+							*Aplica-se o inverso do complemento de 2, para obter X invés de -X
+							  1)	0011 0101 1001 
+							       -             1
+							      ________________
+								0011 0101 1000 
+	
+							  2) 0011 0101 1000 -> 1100 1010 0111
+
+							*Conversão para hexadecimal através do método de agrupamentos
+
+								1100 1010 0111
+								 /     |    \
+								C      A     7
+
+
+							
+
+
+5) a) 110011(2) – 1101(2) = X(2)
+
+	1) 1101 -> 0000 1101	&&   110011  -> 0011 0011
+				
+	2) 0000 1101 -> 1111 0010
+
+	3) 1111 0010 + 1 = 1111 0011
+
+	4) 0011 0011
+	 + 1111 0011
+	____________
+	|1|0010 0110	
+
+	RESP: 110011(2) – 1101(2) = 00100110(2)
+
+
+	b) 101,1101(2) – 3,3(8) = 010,0111(2)
+
+	c) 231(4) – E(16) = 011111(2)
+
+	d) D4(16) – 1011101(2) = 0111,0111(2)
+
+	e) 67(10) – 3B(16) = 0000 1000(2)					
+
+
+						
+	 	     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

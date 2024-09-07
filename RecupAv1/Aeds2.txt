@@ -1,0 +1,18 @@
+
+java
+
+javac MeuPrograma.java
+java MeuPrograma
+
+
+
+C
+
+gcc -o meuprograma meuprograma.c
+meuprograma.exe
+
+
+
+Pub-in
+
+<pub.in> saida.txt

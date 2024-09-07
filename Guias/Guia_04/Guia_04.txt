@@ -1,0 +1,569 @@
+Victor Souza Lima - Codigo de Pessoa: 1478515;
+
+
+1) a) x * (y+z')'
+
+
+	#mintermos| mintermos| xyz |x'|y'|z'| y+z'|(y+z')'| x+(y+z')'
+	    0     | x'•y'•z' | 000 |1 |1 |1 |  1  |   0   |    0 
+            1     | x'•y'•z  | 001 |1 |1 |0 |  0  |   1   |    1
+            2     | x'•y•z'  | 010 |1 |0 |1 |  1  |   0   |    0
+            3     | x'•y•z   | 011 |1 |0 |0 |  1  |   0   |    0
+	    4     | x'•y•z   | 100 |0 |1 |1 |  1  |   0   |    1
+            5     | x•y'•z   | 101 |0 |1 |0 |  0  |   1   |    1
+	    6     | x•y•z'   | 110 |0 |0 |1 |  1  |   0   |    1
+	    7     | x•y•z    | 111 |0 |0 |0 |  1  |   0   |    1
+
+	RESP: SoP(1,4,5,6,7)
+
+		module fxyz (output s,
+			input x, y, z);
+		assign s = x & ~(y | ~z);
+		endmodule // fxyz
+
+    b) 	#mintermos| mintermos| xyz |x'|y'|z'| x+y'|(x+y')'| (x+y')'*z
+	    0     | x'•y'•z' | 000 |1 |1 |1 |  1  |   0   |    0 
+            1     | x'•y'•z  | 001 |1 |1 |0 |  1  |   0   |    0
+            2     | x'•y•z'  | 010 |1 |0 |1 |  0  |   1   |    0
+            3     | x'•y•z   | 011 |1 |0 |0 |  0  |   1   |    1
+	    4     | x'•y•z   | 100 |0 |1 |1 |  1  |   0   |    0
+            5     | x•y'•z   | 101 |0 |1 |0 |  1  |   0   |    0
+	    6     | x•y•z'   | 110 |0 |0 |1 |  1  |   0   |    0
+	    7     | x•y•z    | 111 |0 |0 |0 |  1  |   0   |    0
+
+
+	RESP: SoP(3);
+
+		module fxyz (output s,
+			input x, y, z);
+		assign s = ~(x | ~y) & z;
+		endmodule // fxyz
+
+
+	
+   c)	
+	#mintermos| mintermos| xyz |x'|y'|z'| x'*y|(x'*y)'| (x'*y)'*z'
+	    0     | x'•y'•z' | 000 |1 |1 |1 |  0  |   1    |    1 
+            1     | x'•y'•z  | 001 |1 |1 |0 |  0  |   1    |    0
+            2     | x'•y•z'  | 010 |1 |0 |1 |  1  |   0    |    0
+            3     | x'•y•z   | 011 |1 |0 |0 |  1  |   0    |    0
+	    4     | x'•y•z   | 100 |0 |1 |1 |  0  |   1    |    1
+            5     | x•y'•z   | 101 |0 |1 |0 |  0  |   1    |    0
+	    6     | x•y•z'   | 110 |0 |0 |1 |  0  |   1    |    1
+	    7     | x•y•z    | 111 |0 |0 |0 |  0  |   1    |    0
+
+
+	RESP: SoP(1,4,6)
+		
+		module fxyz (output s,
+			input x, y, z);
+		assign s = ~(~x & ~y) & ~z;
+		endmodule // fxyz
+
+    d)
+	#mintermos| mintermos| xyz |x'|y'|z'| x'*y|(x'*y)'| (x'*y)'*z
+	    0     | x'•y'•z' | 000 |1 |1 |1 |  0  |   1    |    0 
+            1     | x'•y'•z  | 001 |1 |1 |0 |  0  |   1    |    1
+            2     | x'•y•z'  | 010 |1 |0 |1 |  1  |   0    |    0
+            3     | x'•y•z   | 011 |1 |0 |0 |  1  |   0    |    0
+	    4     | x'•y•z   | 100 |0 |1 |1 |  0  |   1    |    0
+            5     | x•y'•z   | 101 |0 |1 |0 |  0  |   1    |    1
+	    6     | x•y•z'   | 110 |0 |0 |1 |  0  |   1    |    0
+	    7     | x•y•z    | 111 |0 |0 |0 |  0  |   1    |    1	
+
+
+
+	RESP: SoP(2,5,7)
+		
+		module fxyz (output s,
+			input x, y, z);
+		assign s = ~(~x & ~y) & z;
+		endmodule // fxyz
+
+
+
+   e)
+	#mintermos| mintermos| xyz |x'|y'|z'| x+y | (y'+z) |(y'+z)'| x+y *(y'+z)'
+	    0     | x'•y'•z' | 000 |1 |1 |1 |  0  |   1    |    0  | 	0
+            1     | x'•y'•z  | 001 |1 |1 |0 |  0  |   1    |    0  |    0
+            2     | x'•y•z'  | 010 |1 |0 |1 |  1  |   0    |    1  |    1
+            3     | x'•y•z   | 011 |1 |0 |0 |  1  |   1    |    0  |	0
+	    4     | x'•y•z   | 100 |0 |1 |1 |  1  |   1    |    0  | 	0	
+            5     | x•y'•z   | 101 |0 |1 |0 |  1  |   1    |    0  | 	0
+	    6     | x•y•z'   | 110 |0 |0 |1 |  1  |   0    |    1  |    1
+	    7     | x•y•z    | 111 |0 |0 |0 |  1  |   1    |    0  |    0
+
+	RESP: SoP(2,6)
+		
+		module fxyz (output s,
+			input x, y, z);
+		assign s = (x | y) & ~(~y | z);
+		endmodule // fxyz
+
+
+
+2) a) x . ( x' + y' )'
+
+	= x * ( x' + y' )'  De Morgan
+	= x * (x * y)       Associatividade
+	= (x * x) * y       Idempotencia
+	=   1 * y           Identidade
+	=     y
+
+	module fxyz (output s1, output s2, input x, y, z);
+	assign s1 = x & ~(~x | ~y);
+	assign s2 = y;
+	endmodule // fxyz
+
+
+
+
+   b) ( x' + y ) + ( x . y )
+
+	= ( x' + y ) + ( x * y )               Distributiva
+	= (( x' + y )+ x)  *  ((x' + y) + y)   Comutatividade
+	=    (x'+ x + y) * (x' + y + y)        Complementar e Idempotencia
+	=        (1 + y) * (x' + y)            Identidade
+	=           1  * (x' + y)              Identidade
+	=              x' + y
+ 	                
+
+	module fxyz (output s1, output s2, input x, y, z);
+	assign s1 = (~x | y) | (x & y);
+	assign s2 = ~x | y;
+	endmodule // fxyz
+
+
+
+
+
+   c) ( x' . y )' . ( x + y' )
+
+	= ( x' * y )' * ( x + y' )   De Morgan
+	=   (x  + y') * (x + y')     Idempotencia
+	=         x + y'
+
+
+	module fxyz (output s1, output s2, input x, y, z);
+	assign s1 = ~(~x & y) & (x + ~y);
+	assign s2 = x | ~y;
+	endmodule // fxyz
+
+
+
+
+
+   d) ( x' . y' )' + ( x' + y' )'
+
+	= ( x' * y' )' + ( x' + y' )'     De Morgan
+	=      ( x + y) + (x * y)         Distributividade
+	= (( x + y)+ x)  * (( x + y)+y)   Comutatividade
+	=   (x + x + y)  * (x + y + y)    Idempotencia
+	=     (x + y)  * (x + y)          Idempotencia
+	=            x + y
+
+	module fxyz (output s1, output s2, input x, y, z);
+	assign s1 = ~(~x & ~y) | ~(~x + ~y);
+	assign s2 = x | y;
+	endmodule // fxyz
+
+
+
+
+   e) ( y + x' )' . ( y' + x )
+	
+	= ( y + x' )' * ( y' + x )         De Morgan
+	=   (y' * x)  * (y' + x)           Distributiva
+	= ((y' * x)* y') + ((y' * x) *x)   Comutatividade
+	=  (y' * y' * x)  + (y' * x * x)   Idempotencia
+	=   ( y' * x) + (y' * x)           Idempotencia
+	=       y' * x
+
+
+	module fxyz (output s1, output s2, input x, y, z);
+	assign s1 = ~(y | ~x) & (~y + x);
+	assign s2 = ~y & x;
+	endmodule // fxyz
+
+
+
+
+3) a) f (x,y,z) = Σ m ( 2, 5, 6, 7 )
+
+	    m     | mintermos| x y z |    SoP     
+	    0     | x'•y'•z' | 0 0 0 |     0        
+            1     | x'•y'•z  | 0 0 1 |     0       
+            2     | x'•y•z'  | 0 1 0 |     1 
+            3     | x'•y•z   | 0 1 1 |     0 
+	    4     | x'•y•z   | 1 0 0 |     0 
+            5     | x•y'•z   | 1 0 1 |     1 
+	    6     | x•y•z'   | 1 1 0 |     1 
+	    7     | x•y•z    | 1 1 1 |     1
+
+	
+	SoP(2,5,6,7) = (x'•y•z') + (x•y'•z) + (x•y•z') + (x•y•z)
+		     
+	module SoP (output s, input x, y, z); // mintermos
+        // m 2 5 6 7 
+        assign s = (~x&y&~z) | (x&~y&z) | (x&y&~z) | (x&y&z);
+        endmodule // SoP
+
+   
+   b)   f (x,y,z) = Σ m ( 1, 3, 6, 7 )
+	  
+	    m     | mintermos| x y z |    SoP     
+	    0     | x'•y'•z' | 0 0 0 |     0        
+            1     | x'•y'•z  | 0 0 1 |     1       
+            2     | x'•y•z'  | 0 1 0 |     0 
+            3     | x'•y•z   | 0 1 1 |     1 
+	    4     | x'•y•z   | 1 0 0 |     0 
+            5     | x•y'•z   | 1 0 1 |     0 
+	    6     | x•y•z'   | 1 1 0 |     1 
+	    7     | x•y•z    | 1 1 1 |     1
+
+	Sop(1,3,6,7) = (x'•y'•z) + (x'•y•z) + (x•y•z') + (x•y•z)
+
+	
+	module SoP (output s, input x, y, z); // mintermos
+        // m 1 3 6 7 
+        assign s = (~x&~y&z) | (~x&y&z) | (x&y&~z) | (x&y&z);
+        endmodule // SoP
+
+
+   c) f (x,y,w,z) = Σ m ( 1, 2, 4, 6, 7, 12, 15 )
+
+
+	    m     | mintermos   | x y w z |    SoP     
+	    0     | x'•y'•w'•z' | 0 0 0 0 |     0        
+            1     | x'•y'•w'•z  | 0 0 0 1 |     1       
+            2     | x'•y'•w •z' | 0 0 1 0 |     1 
+            3     | x'•y'•w •z  | 0 0 1 1 |     0 
+	    4     | x'•y •w'•z' | 0 1 0 0 |     1 
+            5     | x'•y •w'•z  | 0 1 0 1 |     0 
+	    6     | x'•y •w'•z' | 0 1 1 0 |     1 
+	    7     | x'•y •w'•z' | 0 1 1 1 |     1
+	    8     | x •y'•w'•z' | 1 0 0 0 |	0
+	    9	  | x •y'•w'•z  | 1 0 0 1 |	0
+	    10	  | x •y'•w •z' | 1 0 1 0 |	0
+	    11    | x •y'•w •z  | 1 0 1 1 |	0
+	    12	  | x •y •w'•z' | 1 1 0 0 |	1
+	    13	  | x •y •w'•z  | 1 1 0 1 |	0
+	    14	  | x •y •w •z' | 1 1 1 0 |	0
+	    15	  | x• y• w• z  | 1 1 1 1 |	1
+
+	SoP (1,2,4,6,7,12,15) = (x'•y'•w'•z ) + (x'•y'•w •z') + (x'•y •w'•z') + (x'•y •w'•z') + (x'•y •w'•z') + (x •y •w'•z') + ( x• y• w• z)
+
+
+	module SoP (output s, input x, y, z); // mintermos
+        // m 1 2 4 6 7 12 15
+	assign s = (~x&~y&~w&z) | (~x&~y&w&~z) | (~x&y&~w&~z) | (~x&y&~w&~z) | (~x&y&~w&~z) | (x&y&~w&~z) | (x&y&w&z);
+	endmodule // SoP
+
+	
+   d)  f (x,y,w,z) = Σ m ( 1, 2, 5, 8, 10, 12, 13 )
+
+	    m     | mintermos   | x y w z |    SoP     
+	    0     | x'•y'•w'•z' | 0 0 0 0 |     0        
+            1     | x'•y'•w'•z  | 0 0 0 1 |     1       
+            2     | x'•y'•w •z' | 0 0 1 0 |     1 
+            3     | x'•y'•w •z  | 0 0 1 1 |     0 
+	    4     | x'•y •w'•z' | 0 1 0 0 |     0 
+            5     | x'•y •w'•z  | 0 1 0 1 |     1 
+	    6     | x'•y •w'•z' | 0 1 1 0 |     0 
+	    7     | x'•y •w'•z' | 0 1 1 1 |     0
+	    8     | x •y'•w'•z' | 1 0 0 0 |	1
+	    9	  | x •y'•w'•z  | 1 0 0 1 |	0
+	    10	  | x •y'•w •z' | 1 0 1 0 |	1
+	    11    | x •y'•w •z  | 1 0 1 1 |	0
+	    12	  | x •y •w'•z' | 1 1 0 0 |	1
+	    13	  | x •y •w'•z  | 1 1 0 1 |	1
+	    14	  | x •y •w •z' | 1 1 1 0 |	0
+	    15	  | x• y• w• z  | 1 1 1 1 |	0
+
+	SoP (1,2,5,8,10,12,13) = (x'•y'•w'•z ) + (x'•y'•w •z') + (x'•y •w'•z) + (x •y'•w'•z') + ( x •y'•w •z') + (x •y •w'•z') + (x •y •w'•z)
+
+	module SoP (output s, input x, y, z); // mintermos
+        // m 1 2 5 8 10 12 13
+	assign s = (~x&~y&~w&z) | (~x&~y&w&~z) | (~x&y&~w&z) | (x&~y&~w&~z) | (x&~y&w&~z) | (x&y&~w&~z) | (x&y&~w&z);
+	endmodule // SoP
+
+
+
+	
+    e) f (x,y,w,z) = Σ m ( 0, 2, 5, 7, 9, 13 )
+
+	    m     | mintermos   | x y w z |    SoP     
+	    0     | x'•y'•w'•z' | 0 0 0 0 |     1        
+            1     | x'•y'•w'•z  | 0 0 0 1 |     0       
+            2     | x'•y'•w •z' | 0 0 1 0 |     1 
+            3     | x'•y'•w •z  | 0 0 1 1 |     0 
+	    4     | x'•y •w'•z' | 0 1 0 0 |     0 
+            5     | x'•y •w'•z  | 0 1 0 1 |     1 
+	    6     | x'•y •w'•z' | 0 1 1 0 |     0 
+	    7     | x'•y •w'•z' | 0 1 1 1 |     1
+	    8     | x •y'•w'•z' | 1 0 0 0 |	0
+	    9	  | x •y'•w'•z  | 1 0 0 1 |	1
+	    10	  | x •y'•w •z' | 1 0 1 0 |	0
+	    11    | x •y'•w •z  | 1 0 1 1 |	0
+	    12	  | x •y •w'•z' | 1 1 0 0 |	0
+	    13	  | x •y •w'•z  | 1 1 0 1 |	1
+	    14	  | x •y •w •z' | 1 1 1 0 |	0
+	    15	  | x• y• w• z  | 1 1 1 1 |	0
+
+
+	SoP (0,2,5,7,9,13) = (x'•y'•w'•z' ) + (x'•y'•w •z') + (x'•y •w'•z) + (x'•y •w'•z') + ( x •y'•w'•z) + (x •y •w'•z )
+
+
+	module SoP (output s, input x, y, z); // mintermos
+        // m 0 2 5 7 9 13
+	assign s = (~x&~y&~w&~z) | (~x&~y&w&~z) | (~x&y&~w&z) | (~x&y&~w&~z) | (x&~y&~w&z) | (x&y&~w&z);
+	endmodule // SoP
+
+
+4) a) F (X,Y,Z) = π M ( 1, 5, 6, 7 )
+
+
+	    M     | MAXTERMOS| x y z |    PoS     
+	    0     | x +y +z  | 0 0 0 |     1        
+            1     | x +y +z' | 0 0 1 |     0       
+            2     | x +y'+z  | 0 1 0 |     1 
+            3     | x +y'+z' | 0 1 1 |     1 
+	    4     | x'+y +z  | 1 0 0 |     1 
+            5     | x'+y +z' | 1 0 1 |     0 
+	    6     | x'+y'+z  | 1 1 0 |     0 
+	    7     | x'+y'+z' | 1 1 1 |     0
+
+	PoS(1,5,6,7) = (x +y +z') * (x'+y +z') * (x'+y'+z) * (x'+y'+z')
+
+	module PoS (output S, input X, Y, Z); // MAXTERMOS
+    	// M 1 5 6 7
+	assign S = (X | Y | ~Z) & (~X| Y|~Z) & (~X|~Y| Z) & (~X|~Y|~Z);
+	endmodule // PoS
+
+
+   b) F (X,Y,Z) = π M ( 0, 4, 5, 7, 12 )   --> 12????
+
+	    M     | MAXTERMOS| x y z |    PoS     
+	    0     | x +y +z  | 0 0 0 |     0        
+            1     | x +y +z' | 0 0 1 |     1       
+            2     | x +y'+z  | 0 1 0 |     1 
+            3     | x +y'+z' | 0 1 1 |     1 
+	    4     | x'+y +z  | 1 0 0 |     0 
+            5     | x'+y +z' | 1 0 1 |     0 
+	    6     | x'+y'+z  | 1 1 0 |     1 
+	    7     | x'+y'+z' | 1 1 1 |     0
+
+	PoS(0,4,5,7) = (x +y +z) * (x'+y +z) * (x'+y +z') * (x'+y'+z')
+
+	module PoS (output S, input X, Y, Z); // MAXTERMOS
+    	// M 0 4 5 7
+	assign S = (X | Y | Z) & (~X| Y| Z) & (~X| Y| ~Z) & (~X|~Y|~Z);
+	endmodule // PoS
+
+
+
+   c) F (X,Y,W,Z) = π M ( 0, 1, 2, 5, 6, 8, 11, 13 )
+
+
+
+	    M     | MAXTERMOS   | x y w z |    SoP     
+	    0     | x +y +w +z  | 0 0 0 0 |     0         
+            1     | x +y +w +z' | 0 0 0 1 |     0          
+            2     | x +y +w'+z  | 0 0 1 0 |     0          
+            3     | x +y +w'+z' | 0 0 1 1 |     1 	 
+	    4     | x +y'+w +z  | 0 1 0 0 |     1         
+            5     | x +y'+w +z' | 0 1 0 1 |     0 
+	    6     | x +y'+w'+z  | 0 1 1 0 |     0 
+	    7     | x +y'+w'+z' | 0 1 1 1 |     1
+	    8     | x'+y +w +z  | 1 0 0 0 |	0
+	    9	  | x'+y +w +z' | 1 0 0 1 |	1
+	    10	  | x'+y +w'+z  | 1 0 1 0 |	1
+	    11    | x'+y +w'+z' | 1 0 1 1 |	0
+	    12	  | x'+y'+w +z  | 1 1 0 0 |	1
+	    13	  | x'+y'+w +z' | 1 1 0 1 |	0
+	    14	  | x'+y'+w'+z  | 1 1 1 0 |	1
+	    15	  | x'+y'+w'+z' | 1 1 1 1 |	1
+
+
+
+	PoS(0,1,2,5,6,8,11,13) = (x +y +w +z) * (x +y +w +z') * (x +y +w'+z) * (x +y'+w +z') * (x +y'+w'+z) * (x'+y +w +z) * (x'+y +w'+z') * (x'+y'+w +z')
+
+	module PoS (output S, input X, Y, Z); // MAXTERMOS
+    	// M 0 1 2 5 6 8 11 13
+	assign S = ( X | Y | W | Z) * ( X | Y | W | ~Z) * ( X | Y | ~W | Z) * ( X | ~Y | W | ~Z) * ( X | ~Y | ~W | Z) * ( ~X | Y | W | Z) * ( ~X | Y | ~W | ~Z) * ( ~X | ~Y | W | ~Z);
+	endmodule // PoS
+
+
+   d) F (X,Y,W,Z) = π M ( 1, 2, 4, 6, 8, 9, 14 )
+
+	
+	    M     | MAXTERMOS   | x y w z |    SoP     
+	    0     | x +y +w +z  | 0 0 0 0 |     1         
+            1     | x +y +w +z' | 0 0 0 1 |     0          
+            2     | x +y +w'+z  | 0 0 1 0 |     0          
+            3     | x +y +w'+z' | 0 0 1 1 |     1 	 
+	    4     | x +y'+w +z  | 0 1 0 0 |     0         
+            5     | x +y'+w +z' | 0 1 0 1 |     1 
+	    6     | x +y'+w'+z  | 0 1 1 0 |     0 
+	    7     | x +y'+w'+z' | 0 1 1 1 |     1
+	    8     | x'+y +w +z  | 1 0 0 0 |	0
+	    9	  | x'+y +w +z' | 1 0 0 1 |	0
+	    10	  | x'+y +w'+z  | 1 0 1 0 |	1
+	    11    | x'+y +w'+z' | 1 0 1 1 |	1
+	    12	  | x'+y'+w +z  | 1 1 0 0 |	1
+	    13	  | x'+y'+w +z' | 1 1 0 1 |	1
+	    14	  | x'+y'+w'+z  | 1 1 1 0 |	0
+	    15	  | x'+y'+w'+z' | 1 1 1 1 |	1
+
+	
+
+	PoS(1,2,4,6,8,9,14) = (x +y +w +z') * (x +y +w'+z) * (x +y'+w +z) * (x +y'+w'+z) * (x'+y +w +z) * (x'+y +w +z') * (x'+y'+w'+z)
+
+	module PoS (output S, input X, Y, Z); // MAXTERMOS
+    	// M 0 1 2 5 6 8 11 13
+	assign S = ( X | Y | W | ~Z) * ( X | Y | ~W | Z) * ( X | ~Y | W | Z) * ( X | ~Y | ~W | Z) * ( ~X | Y | W | Z) * ( ~X | Y | W | ~Z) * ( ~X | ~Y | ~W | Z);
+	endmodule // PoS
+
+
+
+
+
+    e) F (X,Y,W,Z) = π M ( 0, 1, 2, 3, 5, 10, 11 ) 
+
+
+	    M     | MAXTERMOS   | x y w z |    SoP     
+	    0     | x +y +w +z  | 0 0 0 0 |     0         
+            1     | x +y +w +z' | 0 0 0 1 |     0          
+            2     | x +y +w'+z  | 0 0 1 0 |     0          
+            3     | x +y +w'+z' | 0 0 1 1 |     0 	 
+	    4     | x +y'+w +z  | 0 1 0 0 |     1         
+            5     | x +y'+w +z' | 0 1 0 1 |     0 
+	    6     | x +y'+w'+z  | 0 1 1 0 |     1 
+	    7     | x +y'+w'+z' | 0 1 1 1 |     1
+	    8     | x'+y +w +z  | 1 0 0 0 |	1
+	    9	  | x'+y +w +z' | 1 0 0 1 |	1
+	    10	  | x'+y +w'+z  | 1 0 1 0 |	0
+	    11    | x'+y +w'+z' | 1 0 1 1 |	0
+	    12	  | x'+y'+w +z  | 1 1 0 0 |	1
+	    13	  | x'+y'+w +z' | 1 1 0 1 |	1
+	    14	  | x'+y'+w'+z  | 1 1 1 0 |	1
+	    15	  | x'+y'+w'+z' | 1 1 1 1 |	1
+
+
+
+	PoS(0,1,2,3,5,10,11) = (x +y +w +z) * (x +y +w +z') * (x +y +w'+z) * (x +y +w'+z) * (x +y'+w +z') * (x'+y +w'+z) * (x'+y +w'+z')
+
+	
+	module PoS (output S, input X, Y, Z); // MAXTERMOS
+    	// M 0 1 2 5 6 8 11 13
+	assign S = ( X | Y | W | Z) * ( X | Y | W | ~Z) * ( X | Y | ~W | Z) * ( X | Y | ~W | Z) * ( X | ~Y | W | ~Z) * ( ~X | Y | ~W | Z) * ( ~X | Y | ~W | ~Z);
+	endmodule // PoS
+
+
+
+
+
+
+
+5) a) 
+
+	    n     | x y  |   f(x,y)    
+	    0     | 0 0  |     0        
+            1     | 0 1  |     1       
+            2     | 1 0  |     0 
+            3     | 1 1  |     1 
+
+
+	SoP(1,3) = (x'*y)+(x*y)
+	PoS(0,2) = (x+y)*(x'+y)
+
+
+   b)
+	    n     | x y  |   f(x,y)    
+	    0     | 0 0  |     1        
+            1     | 0 1  |     1       
+            2     | 1 0  |     0 
+            3     | 1 1  |     1 
+
+
+	SoP(0,1,3) = (x'*y')+(x'*y)+(x+y)
+	PoS(2) = (x'+y)
+
+   c)	
+	    n     | x y w  |  f(x,y,z)     
+	    0     | 0 0 0  |     1         
+            1     | 0 0 1  |     1          
+            2     | 0 1 0  |     0          
+            3     | 0 1 1  |     1 	 
+	    4     | 1 0 0  |     1         
+            5     | 1 0 1  |     0 
+	    6     | 1 1 0  |     1 
+	    7     | 1 1 1  |     1
+
+
+	SoP(0,1,3,4,6,7) = (x'*y'*z') + (x'*y'*z) + (x'*y*z) + (x*y'*z') + (x*y*z') + (x*y*z)
+	PoS(2,5) = (x + y'+z) * (x'+ y +z')
+
+  
+   d)
+ 	    n     | x y w  |  f(x,y,z)     
+	    0     | 0 0 0  |     1         
+            1     | 0 0 1  |     0          
+            2     | 0 1 0  |     1          
+            3     | 0 1 1  |     0 	 
+	    4     | 1 0 0  |     1         
+            5     | 1 0 1  |     1 
+	    6     | 1 1 0  |     1 
+	    7     | 1 1 1  |     0
+
+
+	SoP(0,2,4,5,6) = (x'*y'*z') + (x'*y*z') + (x*y'*z') + (x*y'*z) + (x*y*z')
+	PoS(1,3,7) = (x + y+z') * (x+ y' +z') * (x'+ y' +z')
+
+
+
+
+   e)
+            n     | x y w z | f(x,y,w,z)    
+	    0     | 0 0 0 0 |     1         
+            1     | 0 0 0 1 |     1          
+            2     | 0 0 1 0 |     0          
+            3     | 0 0 1 1 |     1 	 
+	    4     | 0 1 0 0 |     1         
+            5     | 0 1 0 1 |     1 
+	    6     | 0 1 1 0 |     0 
+	    7     | 0 1 1 1 |     0
+	    8     | 1 0 0 0 |	  1
+	    9	  | 1 0 0 1 |	  1
+	    10	  | 1 0 1 0 |	  1
+	    11    | 1 0 1 1 |	  0
+	    12	  | 1 1 0 0 |	  0
+	    13	  | 1 1 0 1 |	  0
+	    14	  | 1 1 1 0 |	  1
+	    15	  | 1 1 1 1 |	  1
+
+
+
+	SoP(0,1,3,4,5,8,9,10,14,15) = (x'*y'*w'*z') +  (x'*y'*w'*z) + (x'*y'*w*z) + (x'*y*w'*z') +(x'*y*w'*z) +(x*y'*w'*z') +(x*y'*w'*z) +(x*y'*w*z') +(x*y*w*z') +(x'*y'*w'*z') 
+	PoS(2,6,7,11,12,13) =  (x + y +w'+z) * (x + y'+ w' +z) * (x + y'+w'+z') * (x' + y+w'+z') * (x' + y'+w+z) * (x' + y'+ w +z') 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

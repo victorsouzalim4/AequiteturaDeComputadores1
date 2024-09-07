@@ -1,0 +1,30 @@
+// Guia_1605.txt
+// 835287 - Victor Souza Lima
+// Programa para converter BCD para Hexadecimal
+	   JMP MAIN	// Salta para o início do programa
+// Função para converter BCD para Hexadecimal
+
+CONVERT_BCD_TO_HEX:	   MOV A,M	// Carrega o valor BCD em A
+	   MVI B,0A	// Armazena 10 em B para a multiplicação
+	   ANI F0	// Isola os 4 bits mais significativos (HI)
+	   RRC	// Rotaciona à direita para ajustar os bits
+	   RRC	// Rotaciona mais uma vez
+	   RRC	// Rotaciona mais uma vez
+	   RRC	// Rotaciona mais uma vez
+	   MOV C,A	// Armazena o dígito alto em C
+	   MOV A,M	// Recarrega o valor BCD original em A
+	   ANI 0F	// Isola os 4 bits menos significativos (LOW)
+	   MOV D,A	// Armazena o dígito baixo em D
+	   MOV A,C	// Move o dígito alto de volta para A
+	   MOV E,A	// Move o dígito alto para E
+	   MVI A,10	// Prepara 10 em A para a multiplicação
+		// Multiplica E (dígito alto) por A (10)
+	   ADD D	// Soma o dígito baixo ao resultado da multiplicação
+	   MOV H,A	// Move o resultado final para H
+	   RET	// Retorna do subprograma
+
+MAIN:	   LXI H,0050	// HL aponta para a localização do dado BCD
+	   MVI M,24	// Inicializa o valor 24 em BCD (equivalente a 0010 0100 em BCD)
+	   CALL CONVERT_BCD_TO_HEX	// Chama a função de conversão
+	   SHLD 0060	// Armazena o resultado hexadecimal na memória
+	   HLT	// Termina o programa

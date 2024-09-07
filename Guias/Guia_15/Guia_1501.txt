@@ -1,0 +1,19 @@
+Guia_1504
+835287 - Victor Souza Lima
+
+LXI H, dado01  ; HL <- endereço de dado01
+MOV A, M       ; A <- MEM[HL] (dado01)
+INX H          ; HL <- HL + 1 (endereço de dado02)
+MOV B, M       ; B <- MEM[HL] (dado02)
+INR B          ; B <- B + 1 (para complemento de 2)
+ADD B          ; A <- A - dado02 (usando complemento de 2)
+INX H          ; HL <- HL + 1 (endereço de dado03)
+ADD M          ; A <- A + MEM[HL] (dado03)
+STA dado04     ; MEM[dado04] <- A (resultado)
+HLT            ; parar
+
+; Área de dados
+dado01: DB 02h ; exemplo de valor para dado01
+dado02: DB 01h ; exemplo de valor para dado02
+dado03: DB 03h ; exemplo de valor para dado03
+dado04: DB 00h ; resultado (inicializado com zero)

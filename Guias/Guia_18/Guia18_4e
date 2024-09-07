@@ -1,0 +1,32 @@
+Main:  load n           
+       store count      
+
+       load zero        
+       store result     
+
+       load one         
+       store odd        
+
+loop:  load result      
+       add odd          
+       store result     
+
+       load odd         
+       add two          
+       store odd        
+
+       load count       
+       subtract one     
+       store count      
+       jmpz loop        
+
+       write            
+       stop             
+
+n:     .data 2 4        
+zero:  .data 2 0        
+one:   .data 2 1        
+two:   .data 2 2        
+count: .data 2 0        
+result:.data 2 0        
+odd:   .data 2 0        

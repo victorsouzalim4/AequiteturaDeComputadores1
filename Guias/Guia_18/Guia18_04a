@@ -1,0 +1,14 @@
+
+
+Main:  load one      ; 
+       NOT           ; 
+       write         ; 
+
+       load zero     ; 
+       NOT           ; 
+       write         ; 
+
+       stop          ; 
+
+zero:  .data 2 0     ; 
+one:   .data 2 1     ; 

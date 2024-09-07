@@ -1,0 +1,48 @@
+// Guia_1603.txt
+// 835287 - Victor Souza Lima
+// Programa para calcular o quociente inteiro de dois dados de 8 bits usando subtrações sucessivas
+
+// O primeiro número é armazenado na localização de memória 0050h (dividendo)
+// O segundo número é armazenado na localização de memória 0051h (divisor)
+// O resultado é armazenado na localização de memória 0052h (quociente)
+
+// Função IDIV: A = idiv(D, E)
+// @return A
+// @param D (dividendo)
+// @param E (divisor)
+
+        JMP MAIN        // Desvio para a área principal do programa
+
+// Função IDIV - Divisão usando subtrações sucessivas
+IDIV:   MVI B, 00H      // B = 0 (quociente)
+        
+IDIV_LOOP:
+        MOV A, D        // Move o dividendo para A
+        CMP E           // Compara A com E (dividendo com divisor)
+        JC END_IDIV     // Se A < E, salta para END_IDIV
+        SUB E           // A = A - E (subtração sucessiva)
+        MOV D, A        // Atualiza D com o resultado da subtração
+        INR B           // Incrementa B (quociente)
+        JMP IDIV_LOOP   // Continua o loop de subtração
+
+END_IDIV: RET             // Retorna o resultado em A
+
+// Área principal do programa
+MAIN:   LXI H, 0050H    // HL = 0050h (endereço do primeiro dado - dividendo)
+        MVI M, 08H      // Armazena o valor 08H em 0050h (dividendo)
+        INX H           // Incrementa HL para apontar para 0051h
+        MVI M, 02H      // Armazena o valor 02H em 0051h (divisor)
+        MOV E, M        // E = MEM[HL] (divisor)
+        DCX H           // Decrementa HL para apontar para 0050h novamente
+        MOV D, M        // D = MEM[HL] (dividendo)
+
+        CALL IDIV       // Chama a função IDIV com D e E
+        STA 0052H       // Armazena o resultado em 0052h
+        HLT             // Termina o programa
+
+END:
+
+// Área de dados
+// dado1:  08h  ; primeiro  dado em hexadecimal (dividendo)
+// dado2:  02h  ; segundo dado em hexadecimal (divisor)
+// dado3:  00h  ; resultado em hexadecimal (quociente)
